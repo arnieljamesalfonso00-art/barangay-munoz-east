@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gallery | Barangay Muñoz East</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header>
+        <div class="header-top">
+            <div class="header-box">
+                <img src="logo.jpg" alt="Barangay Logo" class="logo">
+                <div class="brgy-name">
+                    <h1>BARANGAY MUÑOZ EAST</h1>
+                    <p>Roxas, Isabela</p>
+                </div>
+            </div>
+            <div class="search-theme">
+                <input type="text" id="search-input" placeholder="Search here...">
+                <button id="theme-toggle">🌙</button>
+            </div>
+        </div>
+        <nav>
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="about.html">About Us</a></li>
+                <li><a href="services.html">Services</a></li>
+                <li><a href="news.html">Announcements</a></li>
+                <li><a href="gallery.html" class="active">Gallery</a></li>
+                <li><a href="contact.html">Contact</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main class="content">
+        <div id="search-results" class="search-result"></div>
+
+        <section class="page-section">
+            <h2>Barangay Photos and Activities</h2>
+
+            <div class="info-block">
+                <h3>Events and Places in Muñoz East</h3>
+                <p>Here are the photos of our projects, initiatives, beautiful landscapes, and various community activities. <em>(Click on any photo to view it in full size)</em></p>
+
+                <div class="gallery-grid">
+                    <!-- Gallery Items -->
+                    <div class="gallery-item" onclick="openModal('brgy_hall.jpg')">
+                        <img src="HALL.jpg" alt="Barangay Hall">
+                        <p>Muñoz East Barangay Hall</p>
+                    </div>
+                    <div class="gallery-item" onclick="openModal('meeting.jpg')">
+                        <img src="MEETING.jpg" alt="Residents Meeting">
+                        <p>Regular Community Meeting</p>
+                    </div>
+                    <div class="gallery-item" onclick="openModal('cleanup_drive1.jpg')">
+                        <img src="Clean.jpg" alt="Cleanup Drive">
+                        <p>Community Cleanup Drive ("Oplan Linis")</p>
+                    </div>
+                     <div class="gallery-item" onclick="openModal('cleanup_drive2.jpg')">
+                        <img src="act1.jpg" alt="Cleanup Drive">
+                        <p>Environmental Sanitation Activity</p>
+                    </div>
+                        <div class="gallery-item" onclick="openModal('landscape_view.jpg')">
+                        <img src="PUYOG.jpg" alt="Barangay Landscape">
+                        <p>Scenic View of Muñoz East</p>
+                    </div>
+                    <div class="gallery-item" onclick="openModal('road_project.jpg')">
+                        <img src="Road.jpg" alt="Road Project">
+                        <p>Road Improvement Project</p>
+                    </div>
+                </div>
+
+                <p style="margin-top: 1.5rem; font-style: italic; font-size: 0.9rem;">
+                    <!-- Optional footnote or caption text can be added here -->
+                </p>
+            </div>
+        </section>
+    </main>
+
+    <!-- Modal / Large Image View Overlay -->
+    <div id="imageModal" class="image-modal">
+        <span class="close-modal" onclick="closeModal()">&times;</span>
+        <img class="modal-content" id="fullImage" alt="Expanded Gallery Preview">
+    </div>
+
+    <footer>
+        <p>© 2026 Barangay Muñoz East | Roxas, Isabela | All Rights Reserved</p>
+    </footer>
+
+    <script>
+        // Maintain theme settings across pages
+        if (localStorage.getItem('theme') === 'dark') {
+            document.body.classList.add('dark-mode');
+            document.getElementById('theme-toggle').textContent = '☀️';
+        } else {
+            document.body.classList.remove('dark-mode');
+            document.getElementById('theme-toggle').textContent = '🌙';
+        }
+
+        document.getElementById('theme-toggle').onclick = function() {
+            if (document.body.classList.contains('dark-mode')) {
+                document.body.classList.remove('dark-mode');
+                localStorage.setItem('theme', 'light');
+                this.textContent = '🌙';
+            } else {
+                document.body.classList.add('dark-mode');
+                localStorage.setItem('theme', 'dark');
+                this.textContent = '☀️';
+            }
+        };
+
+        // Search functionality
+        const searchInput = document.getElementById('search-input');
+        const resultsBox = document.getElementById('search-results');
+
+        searchInput.addEventListener('input', function() {
+            const query = this.value.trim().toLowerCase();
+            if (query.length < 2) {
+                resultsBox.style.display = 'none';
+                return;
+            }
+            const pageContent = document.body.innerText.toLowerCase();
+            resultsBox.style.display = 'block';
+            resultsBox.innerHTML = pageContent.includes(query)
+                ? `<strong>✅ Results Found:</strong> Contains information about "<em>${query}</em>"`
+                : `<em>❌ No matches found for "${query}"</em>`;
+        });
+
+        // --- Feature: Image Lightbox Modal ---
+        function openModal(imgSrc) {
+            document.getElementById('fullImage').src = imgSrc;
+            document.getElementById('imageModal').style.display = "block";
+            document.body.style.overflow = "hidden";
+        }
+
+        function closeModal() {
+            document.getElementById('imageModal').style.display = "none";
+            document.body.style.overflow = "auto";
+        }
+
+        // Close lightbox when clicking the backdrop backdrop area
+        window.onclick = function(event) {
+            const modal = document.getElementById('imageModal');
+            if (event.target == modal) {
+                closeModal();
+            }
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Announcements & News | Barangay Muñoz East</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header>
+        <div class="header-top">
+            <div class="header-box">
+                <img src="logo.jpg" alt="Barangay Logo" class="logo">
+                <div class="brgy-name">
+                    <h1>BARANGAY MUÑOZ EAST</h1>
+                    <p>Roxas, Isabela</p>
+                </div>
+            </div>
+            <div class="search-theme">
+                <input type="text" id="search-input" placeholder="Search here...">
+                <button id="theme-toggle">🌙</button>
+            </div>
+        </div>
+        <nav>
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="about.html">About Us</a></li>
+                <li><a href="services.html">Services</a></li>
+                <li><a href="news.html" class="active">Announcements</a></li>
+                <li><a href="gallery.html">Gallery</a></li>
+                <li><a href="contact.html">Contact</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main class="content">
+        <div id="search-results" class="search-result"></div>
+
+        <section class="page-section">
+            <h2>Announcements, News, and Activities</h2>
+
+            <div class="info-block">
+                <div style="margin-bottom: 1.2rem;">
+                    <h4> June 2026 — Regular Barangay Meeting</h4>
+                    <p>All residents are invited to attend our regular assembly every first Saturday of the month at 8:00 AM at the Barangay Hall. We will discuss upcoming community projects, local ordinances, and address neighborhood concerns.</p>
+                </div>
+
+                <div style="margin-bottom: 1.2rem;">
+                    <h4> June 2026 — Community Cleanup Drive ("Oplan Linis")</h4>
+                    <p>A neighborhood cleanup covering local streets, drainage pathways, and public facilities will take place every second Sunday of the month starting at 7:00 AM. Every household is highly encouraged to maintain the cleanliness of their own backyards and immediate surroundings.</p>
+                </div>
+
+                <div style="margin-bottom: 1.2rem;">
+                    <h4> Weather and Safety Advisory</h4>
+                    <p>During the rainy season, please remain vigilant and prepared. Avoid staying near or crossing rivers and low-lying areas during heavy downpours. Ensure your family emergency kits are fully stocked with essential food, clean water, flashlights, and a battery-powered radio.</p>
+                </div>
+
+                <div style="margin-bottom: 1.2rem;">
+                    <h4> Free Medical Services and Medicine</h4>
+                    <p>The next distribution of free public healthcare services and essential vitamins/medicines will be held on the last Sunday of the month at the Barangay Health Station. All residents are welcome to check in, especially senior citizens and individuals with existing medical conditions.</p>
+                </div>
+
+                <div style="margin-bottom: 1.2rem;">
+                    <h4>Government Assistance Programs</h4>
+                    <p>Stay tuned for official updates regarding incoming financial subsidies, livelihood training seminars, and other welfare benefits intended for qualified households. Please visit the barangay office directly for complete registration details.</p>
+                </div>
+
+                <div>
+                    <h4> Barangay Rules & Ordinances</h4>
+                    <p>Let us work together to keep our community peaceful and orderly. Please minimize loud noises and loud music from 10:00 PM until 5:00 AM. Additionally, please ensure all household waste is disposed of properly at designated pickup stations according to the scheduled garbage collection times.</p>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; 2026 Barangay Muñoz East | Roxas, Isabela | All Rights Reserved</p>
+    </footer>
+
+    <script>
+        // Maintain theme settings across pages
+        if (localStorage.getItem('theme') === 'dark') {
+            document.body.classList.add('dark-mode');
+            document.getElementById('theme-toggle').textContent = '☀️';
+        } else {
+            document.body.classList.remove('dark-mode');
+            document.getElementById('theme-toggle').textContent = '🌙';
+        }
+
+        document.getElementById('theme-toggle').onclick = function() {
+            if (document.body.classList.contains('dark-mode')) {
+                document.body.classList.remove('dark-mode');
+                localStorage.setItem('theme', 'light');
+                this.textContent = '🌙';
+            } else {
+                document.body.classList.add('dark-mode');
+                localStorage.setItem('theme', 'dark');
+                this.textContent = '☀️';
+            }
+        };
+
+        // Search functionality
+        const searchInput = document.getElementById('search-input');
+        const resultsBox = document.getElementById('search-results');
+
+        searchInput.addEventListener('input', function() {
+            const query = this.value.trim().toLowerCase();
+            if (query.length < 2) {
+                resultsBox.style.display = 'none';
+                return;
+            }
+            const pageContent = document.body.innerText.toLowerCase();
+            resultsBox.style.display = 'block';
+            resultsBox.innerHTML = pageContent.includes(query)
+                ? `<strong>✅ Results Found:</strong> Contains information about "<em>${query}</em>"`
+                : `<em>❌ No matches found for "${query}"</em>`;
+        });
+    </script>
+</body>
+</html>

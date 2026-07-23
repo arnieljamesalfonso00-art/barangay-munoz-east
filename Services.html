@@ -1,0 +1,120 @@
+<html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Services | Barangay Muñoz East</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header>
+        <div class="header-top">
+            <div class="header-box">
+                <img src="Logo.jpg" alt="Barangay Logo" class="logo">
+                <div class="brgy-name">
+                    <h1>BARANGAY MUÑOZ EAST</h1>
+                    <p>Roxas, Isabela</p>
+                </div>
+            </div>
+            <div class="search-theme">
+                <input type="text" id="search-input" placeholder="Search here...">
+                <button id="theme-toggle">🌙</button>
+            </div>
+        </div>
+        <nav>
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="about.html">About Us</a></li>
+                <li><a href="services.html" class="active">Services</a></li>
+                <li><a href="news.html">Announcements</a></li>
+                <li><a href="gallery.html">Gallery</a></li>
+                <li><a href="contact.html">Contact</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main class="content">
+        <div id="search-results" class="search-result"></div>
+
+        <section class="page-section">
+            <h2>Services and Issued Documents</h2>
+
+            <div class="info-block">
+                <h2> Official Services of Barangay Muñoz East</h2>
+                <p>Barangay Muñoz East is committed to providing fast, honest, and efficient public service for the welfare of every resident. Here are the primary services offered by our office:</p>
+
+                <h3>● Barangay Clearance</h3>
+                <p><strong>Purpose and Use:</strong> This is an official document certifying that an individual resides in and is a law-abiding citizen of Barangay Muñoz East. It is commonly required for job applications, securing other government-issued documents, starting a small business, and other transactions requiring proof of identity and residency.</p>
+                <p><strong>Requirements:</strong> A valid identification card (Valid ID) and any document proving current residency within the jurisdiction of the barangay.</p>
+                <p><strong>Processing Time:</strong> This document is typically issued on the same day of the request or within the next regular working hours, depending on the volume of transactions in the office.</p>
+
+                <h3>● Certificate of Residency</h3>
+                <p><strong>Purpose and Use:</strong> A formal certification that a person officially resides and lives within the territory of Barangay Muñoz East. It serves as proof of address recognized by various government offices and private institutions. It is frequently requested for registrations, claiming benefits, and other transactions requiring proof of residence.</p>
+                <p><strong>Requirements:</strong> Valid identification card (Valid ID); witnesses or additional proof may be requested if necessary, particularly for new residents who are not yet fully recorded by the barangay administration.</p>
+
+                <h3>● Certificate of Indigency</h3>
+                <p><strong>Purpose and Use:</strong> This document is issued to certify that the applicant belongs to a low-income family or lacks a sufficient source of livelihood. It is used to avail of medical assistance, free medicine from public hospitals and health centers, educational financial aid, and other government welfare programs intended for those in need.</p>
+                <p><strong>Note:</strong> This certificate is issued free of charge or for a nominal fee in accordance with the law and barangay guidelines, ensuring that those in genuine need can obtain it without barriers.</p>
+
+                <h3>● Barangay Business Clearance</h3>
+                <p><strong>Purpose and Use:</strong> This clearance is required prior to starting or continuing any type of business, commercial activity, or trade within the jurisdiction of Barangay Muñoz East. It ensures that the business complies with community regulations, order, and safety guidelines, and does not cause inconvenience or harm to fellow residents.</p>
+                <p><strong>Requirements:</strong> A formal request or application letter, and consent from the property owner where the business will be established, along with other documents that may be required by the office.</p>
+
+                <h3>● Certificate of Good Moral Character</h3>
+                <p><strong>Purpose and Use:</strong> Serves as official proof that the applicant is an orderly and law-abiding citizen with no pending cases, complaints, or reports of misconduct recorded within the barangay. It is often required for job applications, admission to educational institutions, and other transactions requiring proof of good conduct.</p>
+                <p><strong>Requirements:</strong> Valid identification card (Valid ID) and a formal request stating the purpose for which the certificate is required.</p>
+
+                <h3>● Dispute Resolution and Mediation</h3>
+                <p>The Sangguniang Barangay, led by the Barangay Captain and Councilors (Kagawad), is tasked with facilitating the peaceful, orderly, and swift resolution of any misunderstandings, disputes, or conflicts among neighbors, relatives, or friends. The goal is to resolve issues at the local level and prevent further escalation through dialogue, mediation, and finding mutually beneficial agreements, as mandated by the Barangay Law and the Katarungang Pambarangay (Barangay Justice System).</p>
+
+                <p style="margin-top: 1.5rem; font-style: italic; border-top: 1px solid var(--border-color); padding-top: 1rem;">
+                    *Note: All fees and charges for services strictly adhere to the rates set by the Sangguniang Barangay and the national government. No additional or hidden charges are collected outside of what is officially mandated by law.
+                </p>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <p>© 2026 Barangay Muñoz East | Roxas, Isabela | All Rights Reserved</p>
+    </footer>
+
+    <script>
+        // Maintain theme settings across pages
+        if (localStorage.getItem('theme') === 'dark') {
+            document.body.classList.add('dark-mode');
+            document.getElementById('theme-toggle').textContent = '☀️';
+        } else {
+            document.body.classList.remove('dark-mode');
+            document.getElementById('theme-toggle').textContent = '🌙';
+        }
+
+        document.getElementById('theme-toggle').onclick = function() {
+            if (document.body.classList.contains('dark-mode')) {
+                document.body.classList.remove('dark-mode');
+                localStorage.setItem('theme', 'light');
+                this.textContent = '🌙';
+            } else {
+                document.body.classList.add('dark-mode');
+                localStorage.setItem('theme', 'dark');
+                this.textContent = '☀️';
+            }
+        };
+
+        const searchInput = document.getElementById('search-input');
+        const resultsBox = document.getElementById('search-results');
+
+        searchInput.addEventListener('input', function() {
+            const query = this.value.trim().toLowerCase();
+            if (query.length < 2) {
+                resultsBox.style.display = 'none';
+                return;
+            }
+            const pageContent = document.body.innerText.toLowerCase();
+            resultsBox.style.display = 'block';
+            resultsBox.innerHTML = pageContent.includes(query)
+                ? `<strong>✅ Found:</strong> Information is available for "<em>${query}</em>"`
+                : `<em>❌ No matches found for "${query}"</em>`;
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,142 @@
+<html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact | Barangay Muñoz East</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header>
+        <div class="header-top">
+            <div class="header-box">
+                <img src="logo.jpg" alt="Barangay Logo" class="logo">
+                <div class="brgy-name">
+                    <h1>BARANGAY MUÑOZ EAST</h1>
+                    <p>Roxas, Isabela</p>
+                </div>
+            </div>
+            <div class="search-theme">
+                <input type="text" id="search-input" placeholder="Search here...">
+                <button id="theme-toggle">🌙</button>
+            </div>
+        </div>
+        <nav>
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="about.html">About Us</a></li>
+                <li><a href="services.html">Services</a></li>
+                <li><a href="news.html">Announcements</a></li>
+                <li><a href="gallery.html">Gallery</a></li>
+                <li><a href="contact.html" class="active">Contact</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main class="content">
+        <div id="search-results" class="search-result"></div>
+
+        <section class="page-section">
+            <h2>Contact Us</h2>
+
+            <div class="info-block">
+                <table class="data-table">
+                    <tr>
+                        <td><strong>Location</strong></td>
+                        <td>Barangay Hall, Muñoz East, Roxas, Isabela</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Working Hours</strong></td>
+                        <td>Monday to Friday — 8:00 AM to 5:00 PM<br>
+                        <em>(Closed on Saturdays, Sundays, and Public Holidays)</em></td>
+                    </tr>
+                    <tr>
+                        <td><strong>Phone Number</strong></td>
+                        <td>0916 726 5662 — Barangay Office</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Email Address</strong></td>
+                        <td><a href="mailto:brgymunozeast@gmail.com">brgymunozeast@gmail.com</a></td>
+                    </tr>
+                    <tr>
+                        <td><strong>ZIP Code</strong></td>
+                        <td>3320</td>
+                    </tr>
+                </table>
+
+                <h3 style="margin-top: 1.5rem;"> Note</h3>
+                <p style="text-align: justify; line-height: 1.8;">
+                    For your inquiries, requests, or any documentation needs, you may proceed directly to our office during designated working hours. You can also call or send a message to the provided phone number and email address for a faster response. Alternatively, you can locate our exact position via Google Maps to easily find your way to the Barangay Hall.
+                </p>
+            </div>
+        </section>
+    </main>
+
+    <footer class="site-footer">
+        <div class="footer-content">
+            <div class="footer-info">
+                <h4>Barangay Muñoz East</h4>
+                <p>Barangay Hall, Muñoz East<br>
+                Roxas, Isabela, 3320<br>
+                Region II (Cagayan Valley), Philippines</p>
+                <p>Working Hours: Monday–Friday, 8:00 AM – 5:00 PM<br>
+                <em>(Closed on Saturdays, Sundays, and Public Holidays)</em></p>
+            </div>
+
+            <div class="footer-social">
+                <h4>Connect With Us</h4>
+                <div class="social-buttons">
+                    <a href="https://facebook.com/BarangayMunozEast" target="_blank" class="btn btn-fb">f Facebook</a>
+                    <a href="https://x.com/BrgyMunozEast" target="_blank" class="btn btn-x">𝕏 / Twitter</a>
+                    <a href="https://wa.me/639167265662" target="_blank" class="btn btn-wa">✆ WhatsApp</a>
+                    <a href="mailto:brgymunozeast@gmail.com" class="btn btn-email">✉ Email</a>
+                </div>
+            </div>
+        </div>
+
+        <div class="footer-bottom">
+            <p>&copy; 2026 Barangay Muñoz East | Roxas, Isabela | All Rights Reserved</p>
+        </div>
+    </footer>
+
+    <script>
+        // Maintain theme settings across pages
+        if (localStorage.getItem('theme') === 'dark') {
+            document.body.classList.add('dark-mode');
+            document.getElementById('theme-toggle').textContent = '☀️';
+        } else {
+            document.body.classList.remove('dark-mode');
+            document.getElementById('theme-toggle').textContent = '🌙';
+        }
+
+        document.getElementById('theme-toggle').onclick = function() {
+            if (document.body.classList.contains('dark-mode')) {
+                document.body.classList.remove('dark-mode');
+                localStorage.setItem('theme', 'light');
+                this.textContent = '🌙';
+            } else {
+                document.body.classList.add('dark-mode');
+                localStorage.setItem('theme', 'dark');
+                this.textContent = '☀️';
+            }
+        };
+
+        // Search functionality
+        const searchInput = document.getElementById('search-input');
+        const resultsBox = document.getElementById('search-results');
+
+        searchInput.addEventListener('input', function() {
+            const query = this.value.trim().toLowerCase();
+            if (query.length < 2) {
+                resultsBox.style.display = 'none';
+                return;
+            }
+            const pageContent = document.body.innerText.toLowerCase();
+            resultsBox.style.display = 'block';
+            resultsBox.innerHTML = pageContent.includes(query)
+                ? `<strong>✅ Results Found:</strong> Contains information about "<em>${query}</em>"`
+                : `<em>❌ No matches found for "${query}"</em>`;
+        });
+    </script>
+</body>
+</html>
