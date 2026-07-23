@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Barangay Muñoz East | Roxas, Isabela</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        /* Styling to add and look after the background picture banner */
+        .welcome {
+            background-image: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url('Logo.jpg');
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            padding: 4rem 2rem;
+            border-radius: 8px;
+            color: #ffffff; /* Ensures text is readable over the image */
+            text-align: center;
+        }
+        .welcome .info-block {
+            background: rgba(255, 255, 255, 0.15);
+            backdrop-filter: blur(5px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            padding: 2rem;
+            border-radius: 8px;
+            display: inline-block;
+            max-width: 800px;
+        }
+        .welcome h2 {
+            margin-top: 0;
+            color: #ffffff;
+            font-size: 2.5rem;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7);
+        }
+        .welcome p {
+            font-size: 1.15rem;
+            line-height: 1.6;
+            text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.7);
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="header-top">
+            <div class="header-box">
+                <img src="Logo.jpg" alt="Barangay Logo" class="logo">
+                <div class="brgy-name">
+                    <h1>BARANGAY MUÑOZ EAST</h1>
+                    <p>Roxas, Isabela</p>
+                </div>
+            </div>
+            <div class="search-theme">
+                <input type="text" id="search-input" placeholder="Search...">
+                <button id="theme-toggle">🌙</button>
+            </div>
+        </div>
+        <nav>
+            <ul>
+                <li><a href="index.html" class="active">Home</a></li>
+                <li><a href="about.html">About Us</a></li>
+                <li><a href="services.html">Services</a></li>
+                <li><a href="news.html">Announcements</a></li>
+                <li><a href="gallery.html">Gallery</a></li>
+                <li><a href="contact.html">Contact</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main class="content">
+        <div id="search-results" class="search-result"></div>
+
+        <!-- 🌟 Welcome Hero Section with Background Picture -->
+        <section class="welcome">
+            <div class="info-block">
+                <h2>Welcome!</h2>
+                <p>This is the official website of Barangay Muñoz East. Here, you will find all the important information, services, news, and guides for our community.</p>
+                <p>Our barangay is committed to peace, safety, and progress for every family.</p>
+            </div>
+        </section>
+
+        <!-- 🔗 English-Translated Quick Links Navigation -->
+        <section class="quick-links">
+            <div class="card">
+                <h3>Our Services</h3>
+                <p>Barangay Clearance, Certificates of Residency, Indigency, and more.</p>
+                <a href="services.html" class="btn">View Services</a>
+            </div>
+            <div class="card">
+                <h3>About Us</h3>
+                <p>Demographics, location, history, and local barangay officials.</p>
+                <a href="about.html" class="btn">Read More</a>
+            </div>
+            <div class="card">
+                <h3>Announcements and News</h3>
+                <p>Meetings, community activities, safety updates, and weather advisories.</p>
+                <a href="news.html" class="btn">Read the Latest News</a>
+            </div>
+            <div class="card">
+                <h3>Gallery</h3>
+                <p>Photos of local community events, landmarks, and developments.</p>
+                <a href="gallery.html" class="btn">See Images</a>
+            </div>
+            <div class="card">
+                <h3>Contact Us</h3>
+                <p>Barangay Hall location, operating hours, and official contact details.</p>
+                <a href="contact.html" class="btn">More Details</a>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <p>© 2026 Barangay Muñoz East | Roxas, Isabela | All Rights Reserved.</p>
+    </footer>
+
+    <script>
+        // Theme settings handler
+        if (localStorage.getItem('theme') === 'dark') {
+            document.body.classList.add('dark-mode');
+            document.getElementById('theme-toggle').textContent = '☀️';
+        } else {
+            document.body.classList.remove('dark-mode');
+            document.getElementById('theme-toggle').textContent = '🌙';
+        }
+
+        document.getElementById('theme-toggle').onclick = function() {
+            if (document.body.classList.contains('dark-mode')) {
+                document.body.classList.remove('dark-mode');
+                localStorage.setItem('theme', 'light');
+                this.textContent = '🌙';
+            } else {
+                document.body.classList.add('dark-mode');
+                localStorage.setItem('theme', 'dark');
+                this.textContent = '☀️';
+            }
+        };
+
+        // Site content search execution
+        const searchInput = document.getElementById('search-input');
+        const resultsBox = document.getElementById('search-results');
+
+        searchInput.addEventListener('input', function() {
+            const query = this.value.trim().toLowerCase();
+            if (query.length < 2) {
+                resultsBox.style.display = 'none';
+                return;
+            }
+            const pageContent = document.body.innerText.toLowerCase();
+            resultsBox.style.display = 'block';
+            resultsBox.innerHTML = pageContent.includes(query)
+                ? `<strong>✅ Results Found:</strong> Contains information about "<em>${query}</em>"`
+                : `<em>❌ No matches found for "<em>${query}</em>"</em>`;
+        });
+    </script>
+</body>
+</html>
